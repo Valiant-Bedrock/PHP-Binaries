@@ -37,6 +37,7 @@ set PHP_LIBDEFLATE_VER=0.2.1
 set PHP_XXHASH_VER=0.2.0
 set PHP_XDEBUG_VER=3.2.1
 set PHP_ARRAYDEBUG_VER=0.1.0
+set PHP_VANILLAGENERATOR_VER=2e00e1c2109be94c85ceaba7a2beb77911a0a93e
 
 set script_path=%~dp0
 set log_file=%script_path%compile.log
@@ -226,16 +227,17 @@ if "%PM_VERSION_MAJOR%" geq "5" (
     call :get-extension-zip-from-github "pthreads" "%PHP_PTHREADS_VER%" "pmmp" "ext-pmmpthread" || exit 1
     set THREAD_EXT_FLAGS="--with-pthreads=shared"
 )
-call :get-extension-zip-from-github "yaml"                  "%PHP_YAML_VER%"                  "php"      "pecl-file_formats-yaml"  || exit 1
-call :get-extension-zip-from-github "chunkutils2"           "%PHP_CHUNKUTILS2_VER%"           "pmmp"     "ext-chunkutils2"         || exit 1
-call :get-extension-zip-from-github "igbinary"              "%PHP_IGBINARY_VER%"              "igbinary" "igbinary"                || exit 1
-call :get-extension-zip-from-github "leveldb"               "%PHP_LEVELDB_VER%"               "pmmp"     "php-leveldb"             || exit 1
-call :get-extension-zip-from-github "recursionguard"        "%PHP_RECURSIONGUARD_VER%"        "pmmp"     "ext-recursionguard"      || exit 1
-call :get-extension-zip-from-github "morton"                "%PHP_MORTON_VER%"                "pmmp"     "ext-morton"              || exit 1
-call :get-extension-zip-from-github "libdeflate"            "%PHP_LIBDEFLATE_VER%"            "pmmp"     "ext-libdeflate"          || exit 1
-call :get-extension-zip-from-github "xxhash"                "%PHP_XXHASH_VER%"                "pmmp"     "ext-xxhash"              || exit 1
-call :get-extension-zip-from-github "xdebug"                "%PHP_XDEBUG_VER%"                "xdebug"   "xdebug"                  || exit 1
-call :get-extension-zip-from-github "arraydebug"            "%PHP_ARRAYDEBUG_VER%"            "pmmp"     "ext-arraydebug"          || exit 1
+call :get-extension-zip-from-github "yaml"                  "%PHP_YAML_VER%"                  "php"                 "pecl-file_formats-yaml" || exit 1
+call :get-extension-zip-from-github "chunkutils2"           "%PHP_CHUNKUTILS2_VER%"           "pmmp"                "ext-chunkutils2"        || exit 1
+call :get-extension-zip-from-github "igbinary"              "%PHP_IGBINARY_VER%"              "igbinary"            "igbinary"               || exit 1
+call :get-extension-zip-from-github "leveldb"               "%PHP_LEVELDB_VER%"               "pmmp"                "php-leveldb"            || exit 1
+call :get-extension-zip-from-github "recursionguard"        "%PHP_RECURSIONGUARD_VER%"        "pmmp"                "ext-recursionguard"     || exit 1
+call :get-extension-zip-from-github "morton"                "%PHP_MORTON_VER%"                "pmmp"                "ext-morton"             || exit 1
+call :get-extension-zip-from-github "libdeflate"            "%PHP_LIBDEFLATE_VER%"            "pmmp"                "ext-libdeflate"         || exit 1
+call :get-extension-zip-from-github "xxhash"                "%PHP_XXHASH_VER%"                "pmmp"                "ext-xxhash"             || exit 1
+call :get-extension-zip-from-github "xdebug"                "%PHP_XDEBUG_VER%"                "xdebug"              "xdebug"                 || exit 1
+call :get-extension-zip-from-github "arraydebug"            "%PHP_ARRAYDEBUG_VER%"            "pmmp"                "ext-arraydebug"         || exit 1
+call :get-extension-zip-from-github "vanillagenerator"      "%PHP_VANILLAGENERATOR_VER%"      "Valiant-Bedrock"     "ext-vanillagenerator"   || exit 1
 
 call :pm-echo " - crypto: downloading %PHP_CRYPTO_VER%..."
 git clone https://github.com/bukka/php-crypto.git crypto >>"%log_file%" 2>&1 || exit 1
@@ -264,6 +266,7 @@ call configure^
  --enable-zts^
  --enable-pdo^
  --enable-arraydebug=shared^
+ --enable-vanillagenerator^
  --enable-bcmath^
  --enable-calendar^
  --enable-chunkutils2=shared^
